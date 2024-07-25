@@ -1,0 +1,41 @@
+name: Proxy Server
+
+on:
+  workflow_dispatch:
+    inputs:
+      url:
+        description: 'The URL to proxy'
+        required: true
+        default: 'https://example.com'
+        type: string
+
+jobs:
+  proxy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Install dependencies
+        run: npm install axios
+
+      - name: Run Proxy Script
+        run: |
+          node -e "
+          const axios = require('axios');
+          const url = '${{ github.event.inputs.url }}';
+          axios.get(url)
+            .then(response => {
+              console.log('Status:', response.status);
+              console.log('Data:', response.data);
+            })
+            .catch(error => {
+              console.error('Error:', error.message);
+            });
+          "
