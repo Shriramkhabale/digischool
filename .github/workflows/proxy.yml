@@ -6,7 +6,7 @@ on:
       url:
         description: 'The URL to proxy'
         required: true
-        default: 'https://example.com'
+        default: 'https://digitalschool.solutions'
         type: string
 
 jobs:
