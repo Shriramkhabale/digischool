@@ -6,7 +6,7 @@ on:
       url:
         description: 'The URL to proxy'
         required: true
-        default: 'https://digitalschool.solutions'
+        default: 'https://shriramkhabale.github.io/digischool/'
         type: string
 
 jobs:
